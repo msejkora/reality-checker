@@ -1,0 +1,74 @@
+replicaCount: 1
+
+image:
+  repository: msejkora/reality-checker
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  runAsGroup: 10001
+  runAsNonRoot: true
+  runAsUser: 10001
+
+service:
+  type: ClusterIP
+  port: 8061
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: realitychecker.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+config:
+  mainRepeatInterval: "600000"
+  limitPrice: "13000000"
+  filterDirectory: /app/filters
+  mailHost: smtp.seznam.cz
+  mailPort: "465"
+  mailUsername: "sejk.m@seznam.cz"
+  mailSmtpAuth: "true"
+  mailSmtpStarttlsEnable: "true"
+  mailSmtpSslEnable: "true"
+  emailAddresses: "m.sejkora@icloud.com"
+
+postgresql:
+  host: postgres
+  port: 5432
+  database: reality
+  username: sreality
+  existingSecret: realitychecker-postgres
+  passwordKey: password
+
+mail:
+  existingSecret: realitychecker-email
+  passwordKey: password

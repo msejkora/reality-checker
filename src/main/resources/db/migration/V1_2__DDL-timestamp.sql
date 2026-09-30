@@ -1,0 +1,2 @@
+ALTER TABLE advert ADD COLUMN created_on TIMESTAMP;
+ALTER TABLE advert ADD COLUMN deactivated_on TIMESTAMP;

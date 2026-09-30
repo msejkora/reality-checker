@@ -1,0 +1,1 @@
+-- Columns are created with PostgreSQL-compatible names in V1_2.
